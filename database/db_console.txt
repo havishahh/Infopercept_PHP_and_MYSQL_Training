@@ -1,0 +1,37 @@
+Console:
+
+To show database:
+MariaDB [(none)]> show databases;
+
+To create database named university:
+MariaDB [(none)]> CREATE DATABASE university;
+
+To use database:
+MariaDB [(none)]> USE university;
+
+To create table:
+MariaDB [(none)]> CREATE TABLE students (
+		student_id INT AUTO_INCREMENT PRIMARY KEY,
+   		first_name VARCHAR(50),
+    		last_name VARCHAR(50),
+    		date_of_birth DATE,
+    		major VARCHAR(100),
+    		enrollment_year YEAR
+	       );
+
+To show table schema:
+MariaDB [university]> DESCRIBE students;
+
+To insert a record:
+MariaDB [university]> INSERT INTO students (first_name, last_name, date_of_birth, major, enrollment_year)
+    	VALUES ('John', 'Doe', '2000-05-15', 'Computer Science', 2023);
+
+To inset more then one row:
+MariaDB [university]>   INSERT INTO students (first_name, last_name, date_of_birth, major, enrollment_year)
+		VALUES 
+		('Alice', 'Smith', '1999-03-12', 'Mathematics', 2022),
+		('Bob', 'Johnson', '2001-07-25', 'Physics', 2023),
+		('Charlie', 'Brown', '2000-11-05', 'History', 2021);
+
+To show table records:
+MariaDB [university]> select * from students;
