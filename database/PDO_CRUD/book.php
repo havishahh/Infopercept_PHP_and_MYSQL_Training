@@ -91,4 +91,40 @@ class book
             return false;
         }
     }
+
+    public function getAllBooks(){
+        $stmt = $this->dbConn->prepare("select * from $this->tableName");
+        $stmt->execute();
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $books;
+    }
+
+    public function update(){
+        $sql = "UPDATE $this->tableName SET name=:name, type=:type, pages=:pages, price=:price, author=:author WHERE id=:id";
+        $stmt = $this->dbConn->prepare($sql);
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':type', $this->type);
+        $stmt->bindParam(':pages', $this->pages);
+        $stmt->bindParam(':price', $this->price);
+        $stmt->bindParam(':author', $this->author);
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function delete(){
+        $sql = "delete from $this->tableName where id = :id";
+        $stmt = $this->dbConn->prepare($sql);
+        $stmt->bindParam(':id', $this->id);
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
+?> 
